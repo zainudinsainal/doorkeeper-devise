@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_12_001021) do
+ActiveRecord::Schema.define(version: 2021_08_12_010738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2021_08_12_001021) do
     t.bigint "application_id", null: false
     t.string "token", null: false
     t.integer "expires_in", null: false
-    t.text "redirect_uri", null: false
+    t.text "redirect_uri"
     t.datetime "created_at", null: false
     t.datetime "revoked_at"
     t.string "scopes", default: "", null: false
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2021_08_12_001021) do
     t.string "name", null: false
     t.string "uid", null: false
     t.string "secret", null: false
-    t.text "redirect_uri", null: false
+    t.text "redirect_uri"
     t.string "scopes", default: "", null: false
     t.boolean "confidential", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
@@ -111,6 +111,13 @@ ActiveRecord::Schema.define(version: 2021_08_12_001021) do
     t.index ["email"], name: "index_owners_on_email", unique: true
     t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_owners_on_unlock_token", unique: true
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|

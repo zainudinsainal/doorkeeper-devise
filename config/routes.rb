@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  resources :posts
   use_doorkeeper
   devise_for :owners
   devise_for :admins
   devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace :api do
+    resources :posts, only: %i[index]
+  end
 end
